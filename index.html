@@ -3,11 +3,80 @@
 	
 	<head>
 	
-	
+        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset.css" />
+		<style type="text/css">
+		
+			p
+			{
+				padding-top: 10px;
+				padding-bottom: 10px;
+				clear: both;
+			}
+		
+			li
+			{
+			
+				height: 80px;
+				width: 80px;
+				float: left;
+				margin-right: 3px;
+				margin-bottom: 3px;
+			}
+			
+			.dragables li
+			{
+				
+				background: #ccc;
+				
+			}
+			
+			.droppables li
+			{
+				
+				background: #666;
+				
+			}
+		
+		</style>
+		
 	</head>
 	<body>
-
-
-	</body>
+		
+		<p>Dragables</p>
 	
+		<ul class="dragables">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		
+		<p>Droppables</p>
+		
+		<ul class="droppables">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>	
+	
+	</body>
+	<script type="text/javascript" src="zepto/zepto.js"></script>
+	<script type="text/javascript" src="zepto/event.js"></script>
+	<script type="text/javascript" src="lib/event.js"></script>
+    <script type="text/javascript" src="lib/rect.js"></script>
+    <script type="text/javascript" src="lib/drag-and-drop.js"></script>
+	<script type="text/javascript">
+	
+		$(function(){
+		
+			$('.dragables li').each(function(){
+			
+				drag.set(this);
+			
+			});
+		
+		});
+	
+	</script>
 </html>
