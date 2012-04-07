@@ -16,17 +16,20 @@
 			li
 			{
 			
-				height: 80px;
-				width: 80px;
+				height: 40px;
+				width: 40px;
 				float: left;
 				margin-right: 3px;
 				margin-bottom: 3px;
+				border: solid 3px #666;
+				border-radius: 5px;
 			}
 			
 			.dragables li
 			{
 				
 				background: #ccc;
+				cursor: pointer;
 				
 			}
 			
@@ -70,10 +73,40 @@
 	
 		$(function(){
 		
+			// set dragables
 			$('.dragables li').each(function(){
 			
-				drag.set(this);
+				drag.set(this, {
+					start: function(){
+                        // add actions here to fire when drag starts
+                    },
+                    move: function(hits){
+						
+						var di = drop.items();
+						for(var i = 0; i < di.length; i++) $(di[i]).attr('style', '');
+						
+                        if(hits.length) {
+                            $(hits).css('background', '#f90');    
+                            $(rect.closest(hits, this)).css('background', 'red');                                                    
+                        }
+                    },
+                    drop: function(hits){
+                        if(hits.length) {
+                            // snap dragable to droppable
+							rect.snap(this, rect.closest(hits, this));
+                        } else {
+							// or set this to return to original position
+							drag.reset(this);	
+						}
+                    }				
+					
+				});
 			
+			});
+			
+			// set dropables
+			$('.droppables li').each(function(){
+				drop.set(this);
 			});
 		
 		});
