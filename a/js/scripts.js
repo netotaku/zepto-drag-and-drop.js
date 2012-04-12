@@ -2,6 +2,15 @@
 	
 	var util = (function(){
 		
+		var debug = $('<div />').appendTo('body').css({
+		
+			'position': 'absolute',
+			'top': '0px',
+			'right': '0px',
+			'padding': '10px'
+		
+		});
+		
 		var api = 'http://api.wordnik.com/v4/words.json/randomWord?';
 		
 		var uri_defaults = {
@@ -20,6 +29,12 @@
 					 
 				return api + o.slice(0, -1);			
 			
+			},
+			
+			trace: function(str){
+			
+				debug.html(str);
+			
 			}
 		
 		}
@@ -36,7 +51,7 @@
 			minLength: 4    
 		}), function(data){
 			
-			console.debug(data);
+			util.trace(data.word);
 			
 		});
 	
